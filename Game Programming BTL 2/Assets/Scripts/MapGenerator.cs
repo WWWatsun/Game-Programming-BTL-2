@@ -10,13 +10,13 @@ public class MapGenerator : MonoBehaviour
     [Header("Map Data")]
     private readonly string[] levelMap = {
         "WWWWWWWWWWWWWWWWWW",
+        "W.....WWWWW....WWW",
         "W.....WWWWW......W",
-        "W.....WWWWW......W",
-        "W..WW............W",
-        "W..WW............W",
+        "W..WW.......WW...W",
+        "W..WW.......WW...W",
         "W..1..........2..W",
         "W................W",
-        "W.......XXXX.....W",
+        "W.......WWWW.....W",
         "WWWWWWWWWWWWWWWWWW"
     };
 

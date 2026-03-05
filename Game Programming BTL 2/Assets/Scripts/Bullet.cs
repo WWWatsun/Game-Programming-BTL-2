@@ -168,6 +168,7 @@ public class Bullet : MonoBehaviour
         isReleased = true;
 
         ClearTrail();
+        AudioManager.Instance.PlayExplosionSound();
 
         // stop movement and disable collider to avoid extra collisions while winding up
         if (rb != null) rb.linearVelocity = Vector2.zero;

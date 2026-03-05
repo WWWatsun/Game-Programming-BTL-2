@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
     {
         health -= damage;
         HUD.Instance.UpdatePlayerHealth(playerNumber, (int)health);
+        AudioManager.Instance.PlayHurtSound();
         if (health <= 0f)
         {
             StartCoroutine(Death());
@@ -94,7 +95,9 @@ public class Player : MonoBehaviour
         playerVisual.SetActive(false);
 
         explosionAnim.SetTrigger(EXPLOSION_TRIGGER);
-        yield return new WaitForSeconds(0.35f);
+        AudioManager.Instance.PlayExplosionSound();
+        Music.Instance.PlayVictoryMusic();
+        yield return new WaitForSeconds(EXPLOSION_DURATION);
 
         Destroy(gameObject);
     }

@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
         Vector2 spawnPoint1 = MapGenerator.Instance.SpawnPoint1;
         Vector2 spawnPoint2 = MapGenerator.Instance.SpawnPoint2;
 
@@ -39,12 +45,6 @@ public class GameManager : MonoBehaviour
             var playerComp2 = instance2.GetComponent<Player>();
             if (playerComp2 != null) playerComp2.SetPlayerNumber(2);
         }
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
     }
 
     // Update is called once per frame

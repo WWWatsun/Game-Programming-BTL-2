@@ -37,6 +37,7 @@ public class Turret : MonoBehaviour
             BulletPool.Instance.ShootBullet(shootPoint.position, shootPoint.up, playerNumber);
             lastShootTime = 0f;
             flashAnim.SetTrigger(SHOOT_TRIGGER);
+            AudioManager.Instance.PlayShootSound();
         }
     }
 }
