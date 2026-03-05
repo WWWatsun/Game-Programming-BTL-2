@@ -41,7 +41,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": ";Gamepad;Player 2",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -169,17 +169,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ea188e52-2596-4fcd-96f0-384d0a5d686c",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6ce96516-a13c-4248-8183-299e3582752b",
                     "path": "<Pointer>/delta",
                     "interactions": "",
@@ -256,12 +245,45 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "eb0fa853-ad3f-4348-a26a-e43ecc934f77",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5118221c-e323-4225-aeae-759e8da20354",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Player 2",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "978e5bb3-1007-4194-bb7e-041387cb42f2",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Player 2",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "a5c060c6-dd08-4a5f-a523-5409a92b49e2",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": ";Gamepad;Player 2",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
