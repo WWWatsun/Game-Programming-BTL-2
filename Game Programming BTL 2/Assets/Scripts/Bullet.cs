@@ -186,6 +186,8 @@ public class Bullet : MonoBehaviour
         explosionAnim.SetTrigger(EXPLODE);
 
         yield return new WaitForSeconds(EXPLOSION_WIND_UP);
+        // Destroy walls
+        MapGenerator.Instance.DestroyWallAt(transform.position);
 
         // Check for damageable objects in the explosion radiu
         circleCollider.radius = explosionRadius;

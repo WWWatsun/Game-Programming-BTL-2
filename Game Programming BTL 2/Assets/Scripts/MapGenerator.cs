@@ -167,4 +167,25 @@ public class MapGenerator : MonoBehaviour
 
         wallTilemap.SetTilesBlock(bounds, chunkTiles);
     }
+
+    public void DestroyWallAt(Vector2 worldPosition)
+    {
+        Vector3Int center = wallTilemap.WorldToCell(worldPosition);
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                Vector3Int cell = center + new Vector3Int(x, y, 0);
+
+                if (wallTilemap.HasTile(cell))
+                {
+                    //Debug.Log("Tile destroyed at: " + cell);
+                    wallTilemap.SetTile(cell, null);
+                    wallTilemap.RefreshTile(cell);
+                    return;
+                }
+            }
+        }
+    }
 }
