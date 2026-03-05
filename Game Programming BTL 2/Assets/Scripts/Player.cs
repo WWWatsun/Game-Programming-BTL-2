@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.iOS;
@@ -6,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Turret turret;
+    [SerializeField] private GameObject playerVisual;
+    [SerializeField] private GameObject explosionVisual;
     
     [Header("Player settings")]
     [SerializeField] private float moveSpeed = 5f;
@@ -17,11 +20,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidBody;
 
     private int playerNumber = 1;
+    private Animator explosionAnim;
+    private const string EXPLOSION_TRIGGER = "Explode";
+    private const float EXPLOSION_DURATION = 0.35f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        explosionAnim = explosionVisual.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -70,14 +77,25 @@ public class Player : MonoBehaviour
         HUD.Instance.UpdatePlayerHealth(playerNumber, (int)health);
         if (health <= 0f)
         {
-            // Death logic
-            Debug.Log($"{gameObject.name} has been defeated!");
-            Destroy(gameObject);
+            StartCoroutine(Death());
         }
     }
 
     public void SetPlayerNumber(int number)
     {
         playerNumber = number;
+    }
+
+    private IEnumerator Death()
+    {
+        Debug.Log($"{gameObject.name} has been defeated!");
+        health = 0f;
+        HUD.Instance.ShowWinScreen(playerNumber == 1 ? 2 : 1);
+        playerVisual.SetActive(false);
+
+        explosionAnim.SetTrigger(EXPLOSION_TRIGGER);
+        yield return new WaitForSeconds(0.35f);
+
+        Destroy(gameObject);
     }
 }

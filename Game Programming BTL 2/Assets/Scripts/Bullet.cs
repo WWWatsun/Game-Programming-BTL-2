@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject bulletVisual;
+    [SerializeField] private GameObject bulletTrail;
     [SerializeField] private GameObject explosion;
     [SerializeField] private Sprite player1Bullet;
     [SerializeField] private Sprite player2Bullet;
@@ -36,6 +37,7 @@ public class Bullet : MonoBehaviour
     private const string EXPLODE = "Explode";
 
     private SpriteRenderer sr;
+    private TrailRenderer trailRenderer;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class Bullet : MonoBehaviour
         circleCollider = GetComponent<CircleCollider2D>();
         explosionAnim = explosion.GetComponent<Animator>();
         sr = bulletVisual.GetComponent<SpriteRenderer>();
+        trailRenderer = bulletTrail.GetComponent<TrailRenderer>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,6 +74,7 @@ public class Bullet : MonoBehaviour
         circleCollider.enabled = true;
         circleCollider.radius = defaultRadius;
         rb.simulated = true;
+        bulletTrail.SetActive(true);
     }
 
     private void OnDisable()
@@ -80,6 +84,7 @@ public class Bullet : MonoBehaviour
         timeLived = 0f;
         isReleased = false;
         rb.linearVelocity = Vector2.zero;
+        bulletTrail.SetActive(false);
     }
 
     public void SetPool(IObjectPool<Bullet> pool)
@@ -97,14 +102,18 @@ public class Bullet : MonoBehaviour
 
     public void SetPlayer(int playerNumber)
     {
-        if (playerNumber == 1)
-        {
-            sr.sprite = player1Bullet;
-        }
-        else
-        {
-            sr.sprite = player2Bullet;
-        }
+        //if (playerNumber == 1)
+        //{
+        //    sr.sprite = player1Bullet;
+        //}
+        //else
+        //{
+        //    sr.sprite = player2Bullet;
+        //}
+    }
+
+    public void ClearTrail()     {
+        trailRenderer.Clear();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -130,12 +139,14 @@ public class Bullet : MonoBehaviour
             Vector2 normal = collision.contacts[0].normal;
             Vector2 incoming = rb.linearVelocity;
 
-            // Protect against zero velocity
-            if (incoming.sqrMagnitude <= 0f)
-            {
-                // in case velocity is zero, push it away from the surface normal
-                incoming = -normal * speed;
-            }
+            //// Protect against zero velocity
+            //if (incoming.sqrMagnitude <= 0f)
+            //{
+            //    // in case velocity is zero, push it away from the surface normal
+            //    incoming = -normal * speed;
+            //}
+
+            Debug.Log(normal);
 
             float dot = Vector2.Dot(incoming, normal);
             Vector2 reflected = incoming - 2f * dot * normal;
@@ -155,6 +166,8 @@ public class Bullet : MonoBehaviour
     {
         if (isReleased) return;
         isReleased = true;
+
+        ClearTrail();
 
         // stop movement and disable collider to avoid extra collisions while winding up
         if (rb != null) rb.linearVelocity = Vector2.zero;

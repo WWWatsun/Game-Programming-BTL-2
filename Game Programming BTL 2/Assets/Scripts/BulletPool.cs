@@ -74,6 +74,7 @@ public class BulletPool : MonoBehaviour
     {
         Bullet bullet = pool.Get();
         bullet.transform.position = position;
+        bullet.ClearTrail();
         bullet.SetDirection(direction);
         bullet.SetPlayer(playerNumber);
     }
