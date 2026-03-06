@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Turret turret;
     [SerializeField] private GameObject playerVisual;
     [SerializeField] private GameObject explosionVisual;
-    
+
     [Header("Player settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 360f;
@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private Animator explosionAnim;
     private const string EXPLOSION_TRIGGER = "Explode";
     private const float EXPLOSION_DURATION = 0.35f;
+
+    public static float[] multipliers = { 0f, 1f, 1f };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -100,4 +102,41 @@ public class Player : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public void HealPlayer(int healAmount)
+    {
+        health = Mathf.Min(100f, health + healAmount);
+        HUD.Instance.UpdatePlayerHealth(playerNumber, (int)health);
+    }
+
+    public void SetSpeedUp(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedBoost(multiplier, duration));
+    }
+
+    IEnumerator SpeedBoost(float multiplier, float duration)
+    {
+        float oldSpeed = moveSpeed;
+        float oldRotaion = rotationSpeed;
+        moveSpeed *= multiplier;
+        rotationSpeed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = oldSpeed;
+        rotationSpeed = oldRotaion;
+    }
+
+
+    public void SetMultiplier(float multiplier, float duration)
+    {
+        StartCoroutine(DamageBoost(multiplier, duration));
+    }
+
+    IEnumerator DamageBoost(float multiplier, float duration)
+    {
+        Player.multipliers[playerNumber] = multiplier;
+        yield return new WaitForSeconds(duration);
+        Player.multipliers[playerNumber] = 1f;
+
+    }
+
 }

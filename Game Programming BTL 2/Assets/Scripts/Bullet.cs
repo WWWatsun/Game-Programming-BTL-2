@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject explosion;
     [SerializeField] private Sprite player1Bullet;
     [SerializeField] private Sprite player2Bullet;
+    [SerializeField] private int playerNumber;
 
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 10f;
@@ -110,6 +111,7 @@ public class Bullet : MonoBehaviour
         //{
         //    sr.sprite = player2Bullet;
         //}
+        this.playerNumber = playerNumber;
     }
 
     public void ClearTrail()     {
@@ -197,7 +199,7 @@ public class Bullet : MonoBehaviour
         {
             if (hit.gameObject.TryGetComponent(out Player p))
             {
-                p.TakeDamage(damage);
+                p.TakeDamage(damage * Player.multipliers[playerNumber]);
             }
         }
 
