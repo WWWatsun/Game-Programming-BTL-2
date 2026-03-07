@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private AudioClip winSound;
     [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip powerUpSound;
+    [SerializeField] private AudioClip powerDownSound;
 
     [Header("Audio Settings")]
     [SerializeField] private float sfxVolume = 1f;
@@ -59,10 +61,16 @@ public class AudioManager : MonoBehaviour
         PlaySFX(hurtSound);
     }
 
-    /// <summary>
-    /// Generic method to play any sound effect using the shared AudioSource.
-    /// PlayOneShot allows multiple sounds to play simultaneously without interruption.
-    /// </summary>
+    public void PlayPowerUpSound()
+    {
+        PlaySFX(powerUpSound);
+    }
+
+    public void PlayPowerDownSound()
+    {
+        PlaySFX(powerDownSound);
+    }
+
     private void PlaySFX(AudioClip clip)
     {
         if (clip != null && sfxSource != null)

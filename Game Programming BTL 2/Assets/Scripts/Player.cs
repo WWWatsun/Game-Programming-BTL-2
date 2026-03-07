@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public int GetPlayerNumber()
+    {
+        return playerNumber;
+    }
+
     public void SetPlayerNumber(int number)
     {
         playerNumber = number;

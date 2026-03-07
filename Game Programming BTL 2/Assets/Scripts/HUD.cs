@@ -14,7 +14,9 @@ public class HUD : MonoBehaviour
     [SerializeField] private Slider player2Health;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private TMP_Text winText;
-    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject tutorialScreen;
+    [SerializeField] private TMP_Text player1PowerUp;
+    [SerializeField] private TMP_Text player2PowerUp;
 
     // Singleton instance
     public static HUD Instance { get; private set; }
@@ -34,7 +36,16 @@ public class HUD : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (tutorialScreen != null)
+        {
+            tutorialScreen.SetActive(true);
+            Time.timeScale = 0f; // Pause the game
+        }
+
         if (winScreen != null) winScreen.SetActive(false);
+
+        if (player1PowerUp != null) player1PowerUp.text = "";
+        if (player2PowerUp != null) player2PowerUp.text = "";
     }
 
     // Update is called once per frame
@@ -57,10 +68,28 @@ public class HUD : MonoBehaviour
         }
     }
 
+    public void UpdatePlayerPowerUp(int playerNumber, string powerUp)
+    {
+        if (playerNumber == 1 && player1PowerUp != null)
+        {
+            player1PowerUp.text = powerUp;
+        }
+        else if (playerNumber == 2 && player2PowerUp != null)
+        {
+            player2PowerUp.text = powerUp;
+        }
+    }
+
     public void ShowWinScreen(int winningPlayer)
     {
         winScreen.SetActive(true);
         winText.text = $"Player {winningPlayer} Wins!";
+    }
+
+    public void HideTutorial()
+    {
+        tutorialScreen.SetActive(false);
+        Time.timeScale = 1f; // Resume the game
     }
 
     public void LoadMainMenu()
@@ -73,24 +102,6 @@ public class HUD : MonoBehaviour
     {
         // Reload the main game scene
         SceneManager.LoadScene(gameSceneIndex);
-    }
-
-    public void PauseGame()
-    {
-        if (pauseScreen != null)
-        {
-            pauseScreen.SetActive(true);
-            Time.timeScale = 0f; // Pause the game
-        }
-    }
-
-    public void ResumeGame()
-    {
-        if (pauseScreen != null)
-        {
-            pauseScreen.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
-        }
     }
 
     public void QuitGame()

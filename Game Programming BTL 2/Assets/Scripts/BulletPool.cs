@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Pool;
-using static UnityEngine.GraphicsBuffer;
 
 public class BulletPool : MonoBehaviour
 {

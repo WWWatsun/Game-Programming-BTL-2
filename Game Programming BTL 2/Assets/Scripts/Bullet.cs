@@ -141,14 +141,14 @@ public class Bullet : MonoBehaviour
             Vector2 normal = collision.contacts[0].normal;
             Vector2 incoming = rb.linearVelocity;
 
-            //// Protect against zero velocity
-            //if (incoming.sqrMagnitude <= 0f)
-            //{
-            //    // in case velocity is zero, push it away from the surface normal
-            //    incoming = -normal * speed;
-            //}
+            //rb.linearVelocity = Vector2.Reflect(incoming, normal);
 
-            Debug.Log(normal);
+            // Protect against zero velocity
+            if (incoming.sqrMagnitude <= 0f)
+            {
+                // in case velocity is zero, push it away from the surface normal
+                incoming = -normal * speed;
+            }
 
             float dot = Vector2.Dot(incoming, normal);
             Vector2 reflected = incoming - 2f * dot * normal;
