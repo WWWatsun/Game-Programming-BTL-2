@@ -145,7 +145,7 @@ public class Bullet : MonoBehaviour
 
             float dot = Vector2.Dot(incoming, normal);
             Vector2 reflected = incoming - 2f * dot * normal;
-            //rb.linearVelocity = reflected * speed;
+            rb.linearVelocity = reflected * speed;
 
             bounceCount++;
         }
