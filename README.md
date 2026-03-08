@@ -1,4 +1,4 @@
-# 2D Local Multiplayer Tank Brawler (BTL 2)
+# Assignment 2: TANK BATTLE - CHAOS MAZE
 
 A fast-paced, 2D local multiplayer top-down shooter built in Unity. Players control tanks, navigate dynamically generated destructible environments, and utilize bouncing projectiles and power-ups to defeat their opponents.
 
