@@ -295,7 +295,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: d61fefaa08d5a854bb3de9d4213d8008, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -303,9 +303,9 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &6330916878243003596
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -372,6 +372,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2673889213285085464}
     m_Modifications:
+    - target: {fileID: 2210927574292494095, guid: cf24c20a684953247b9afa9b14b46834, type: 3}
+      propertyPath: m_SpriteLibraryAsset
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4303477015002890762, guid: cf24c20a684953247b9afa9b14b46834, type: 3}
       propertyPath: m_Name
       value: Explosion
