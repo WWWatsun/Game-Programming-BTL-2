@@ -155,9 +155,7 @@ public class Bullet : MonoBehaviour
 
             if (Vector3.Dot(rb.linearVelocity, normal) < 0)
             {
-                rb.linearVelocity = reflected;
-                float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+                rb.linearVelocity = reflected * speed;
             }
 
             bounceCount++;

@@ -359,6 +359,7 @@ MonoBehaviour:
   explosion: {fileID: 5588300387444859563}
   player1Bullet: {fileID: -3738861744847947113, guid: 86daf3f1dd6d4514f87dc3716e6eb58c, type: 3}
   player2Bullet: {fileID: 9130667154423602740, guid: 7240a2e781cd50244a3eae91def60976, type: 3}
+  playerNumber: 0
   speed: 20
   bounces: 3
   damage: 10

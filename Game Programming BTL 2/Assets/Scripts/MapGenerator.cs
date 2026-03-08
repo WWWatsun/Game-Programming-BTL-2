@@ -8,17 +8,65 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private TileBase wallRuleTile;
 
     [Header("Map Data")]
-    private readonly string[] levelMap = {
-        "WWWWWWWWWWWWWWWWWW",
-        "W.....WWWWW....WWW",
-        "W.....WWWWW......W",
-        "W..WW.......WW...W",
-        "W..WW.......WW...W",
-        "W..1..........2..W",
-        "W................W",
-        "W.......WWWW.....W",
-        "WWWWWWWWWWWWWWWWWW"
+    private readonly string[][] allMaps = {
+        new[] {
+            "WWWWWWWWWWWWWWWWWW",
+            "W.....WWWWW....WWW",
+            "W.....WWWWW......W",
+            "W..WW.......WW...W",
+            "W..WW.......WW...W",
+            "W..1..........2..W",
+            "W................W",
+            "W.......WWWW.....W",
+            "WWWWWWWWWWWWWWWWWW"
+        },
+        new[] {
+            "WWWWWWWWWWWWWWWWWW",
+            "W................W",
+            "W..WW........WW..W",
+            "W..WW........WW..W",
+            "W..WW........WW..W",
+            "W..1..WW..WW..2..W",
+            "W.....WW..WW.....W",
+            "W................W",
+            "WWWWWWWWWWWWWWWWWW"
+        },
+        new[] {
+            "WWWWWWWWWWWWWWWWWW",
+            "W.....WW.........W",
+            "W.....WW.........W",
+            "W1....WW.....WW..W",
+            "W.....WW.....WW..W",
+            "W.....WW.....WW.2W",
+            "W............WW..W",
+            "W............WW..W",
+            "WWWWWWWWWWWWWWWWWW"
+        },
+        new[] {
+            "WWWWWWWWWWWWWWWWWW",
+            "W1.WW.....WWW...2W",
+            "W..WW.....WW.....W",
+            "W.........WW.....W",
+            "W..WWW...........W",
+            "W..WWW......WW...W",
+            "W..WW.......WW...W",
+            "W................W",
+            "WWWWWWWWWWWWWWWWWW"
+        },
+        new[] {
+            "WWWWWWWWWWWWWWWWWW",
+            "W.1..............W",
+            "W....WWWWWWWW....W",
+            "W....WWWWWWWW....W",
+            "W....WW..........W",
+            "W....WWWWWWWW....W",
+            "W....WWWWWWWW....W",
+            "W.............2..W",
+            "WWWWWWWWWWWWWWWWWW"
+        }
     };
+
+    private string[] levelMap;
 
     public static MapGenerator Instance { get; private set; }
 
@@ -32,7 +80,14 @@ public class MapGenerator : MonoBehaviour
         else
             Destroy(gameObject);
 
+        SelectRandomMap();
         GenerateMap();
+    }
+
+    private void SelectRandomMap()
+    {
+        int randomIndex = Random.Range(0, allMaps.Length);
+        levelMap = allMaps[randomIndex];
     }
 
     private void GenerateMap()
